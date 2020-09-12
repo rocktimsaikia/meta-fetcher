@@ -1,5 +1,5 @@
 {
-	"name": "meta-fetch",
+	"name": "meta-fetcher",
 	"version": "1.0.0",
 	"description": "Tiny URL meta-data fetcher that scraps the meta-data of a given URL string",
 	"keywords": [
