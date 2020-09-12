@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "target": "es2018",
+        "sourceMap": false,
+        "incremental": false,
+        "skipLibCheck": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "lib": [
+            "es2018"
+        ]
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
