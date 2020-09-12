@@ -19,7 +19,7 @@ const {fetchMetaData} = require('meta-fetcher');
 
 (async () => {
 	const result = await fetchMetaData('https://hoppscotch.io/');
-    console.log(result);
+    	console.log(result);
     
     /*
         {
