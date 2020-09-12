@@ -2,7 +2,7 @@
 
 > Tiny URL meta-data fetcher that scraps the meta-data of a given `URL` string. 
 
-![Travis (.com) branch](https://img.shields.io/travis/com/rocktimsaikia/meta-fetcher/master)
+![Travis (.com) branch](https://img.shields.io/travis/com/rocktimsaikia/meta-fetch/master)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 
 Under the hood it uses [node-fetch](https://github.com/node-fetch/node-fetch) to fetch the metadata, parses it and returns it as json object.
@@ -67,6 +67,7 @@ const {fetchMetaData} = require('meta-fetch');
 })();
 ```
 <br>
+
 It can also fetch meta-data from `shortened-url` .For example:
 ```js
 const {fetchMetaData} = require('meta-fetch');
