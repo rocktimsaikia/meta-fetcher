@@ -1,6 +1,6 @@
 {
 	"name": "meta-fetcher",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Tiny URL meta-data fetcher that scraps the meta-data of a given URL string",
 	"bugs": {
 		"url": "https://github.com/rocktimsaikia/meta-fetch/issues"
@@ -17,6 +17,8 @@
 	"files": [
 		"dist/**/*"
 	],
+	"repository": "rocktimsaikia/meta-fetcher",
+	"homepage": "https://github.com/rocktimsaikia/meta-fetcher",
 	"keywords": [
 		"meta-fetcher",
 		"url-metadata",
