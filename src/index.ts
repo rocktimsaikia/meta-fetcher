@@ -18,7 +18,7 @@ export const fetchMetaData = async (url: string, _options?: Options): Promise<Re
 
 		const options = {
 			userAgent: _options.userAgent ?? 'meta-fetch',
-			fromEmail: _options.userAgent ?? 'metafetch@email.com'
+			fromEmail: _options.fromEmail ?? 'metafetch@email.com'
 		};
 
 		const requestOptions = {
