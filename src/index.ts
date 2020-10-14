@@ -3,11 +3,13 @@ import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import {createValidUri} from './util';
 
+type Metadata = Record<string | number | symbol, unknown>;
+
 /**
  *  Fetches meta data of a given website url
  * @param url | the website url to fetch the metadata from
  */
-export const fetchMetaData = async (url: string, _options?: Options): Promise<Record<string, unknown>> => {
+const fetchMetaData = async (url: string, _options?: Options): Promise<Metadata | undefined> => {
 	try {
 		const urlString: string = url.trim();
 
@@ -25,7 +27,7 @@ export const fetchMetaData = async (url: string, _options?: Options): Promise<Re
 			method: 'GET',
 			headers: {
 				'User-Agent': options.userAgent,
-				'From': options.fromEmail
+				From: options.fromEmail
 			}
 		};
 
@@ -37,7 +39,7 @@ export const fetchMetaData = async (url: string, _options?: Options): Promise<Re
 		const head = $('head');
 
 		// Basic site meta-data
-		const basicMeta = (): Record<string, unknown> => {
+		const basicMeta = (): Metadata => {
 			const website = response.url;
 			const title = head.find('title').text();
 			const desc = head.find('meta[name=description]').attr('content');
@@ -50,15 +52,15 @@ export const fetchMetaData = async (url: string, _options?: Options): Promise<Re
 		};
 
 		// Open graph basic
-		const fetchMeta = (): Record<string, unknown> => {
+		const fetchMeta = (): Metadata => {
 			const openGraphsArray = head.find('meta[property]');
-			const openGraphs = {};
+			const openGraphs: Metadata = {};
 			openGraphsArray.each((_, element) => {
 				const property = $(element)
 					.attr('property');
 				const content = $(element).attr('content');
-				if (!property.includes('twitter')) {
-					openGraphs[property] = content;
+				if (!property!.includes('twitter')) {
+					openGraphs[property!] = content;
 				}
 			});
 
@@ -66,16 +68,16 @@ export const fetchMetaData = async (url: string, _options?: Options): Promise<Re
 		};
 
 		// Open graph social
-		const fetchMetaSocial = (): Record<string, unknown> => {
+		const fetchMetaSocial = (): Metadata => {
 			const openGraphsArray = head.find('meta[name]');
-			const socials = {};
+			const socials: Metadata = {};
 
 			openGraphsArray.each((_, element) => {
 				const property = $(element).attr('name');
 				const content = $(element).attr('content');
 
-				if (property.includes('twitter')) {
-					socials[property] = content;
+				if (property!.includes('twitter')) {
+					socials[property!] = content;
 				}
 			});
 			return socials;
@@ -89,8 +91,8 @@ export const fetchMetaData = async (url: string, _options?: Options): Promise<Re
 			faviconArray.each((_, element) => {
 				const href = $(element).attr('href');
 
-				if (href.includes('shortcut icon') || href.includes('icon') || href.includes('apple-touch-startup-image') || href.includes('apple-touch-icon')) {
-					const validUri = createValidUri(response.url, href);
+				if (href!.includes('shortcut icon') || href!.includes('icon') || href!.includes('apple-touch-startup-image') || href!.includes('apple-touch-icon')) {
+					const validUri = createValidUri(response.url, href!);
 					favicons.push(validUri);
 				}
 			});
@@ -103,7 +105,7 @@ export const fetchMetaData = async (url: string, _options?: Options): Promise<Re
 		const openGraph_social = fetchMetaSocial();
 		const favicons = fetchFavicons();
 
-		const metaData: Record<string, unknown> = {
+		const metaData: Metadata = {
 			basic_metadata: basicMetaData,
 			opengraph: openGraphs,
 			opengraph_social: openGraph_social,
@@ -111,7 +113,7 @@ export const fetchMetaData = async (url: string, _options?: Options): Promise<Re
 		};
 
 		return metaData;
-	} catch (error) {
+	} catch (error: unknown) {
 		console.error(error);
 	}
 };
@@ -121,3 +123,9 @@ interface Options{
 	userAgent?: string;
 	fromEmail?: string;
 }
+
+export default fetchMetaData;
+
+// For CommonJS default export support
+module.exports = fetchMetaData;
+module.exports.default = fetchMetaData;

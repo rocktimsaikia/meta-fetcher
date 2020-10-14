@@ -30,47 +30,40 @@
 		"scrapper"
 	],
 	"scripts": {
-		"prepublishOnly": "pnpm run prebuild && pnpm run test:dev && pnpm run build",
-		"prebuild": "rimraf dist",
-		"build": "pnpm run build:esm && pnpm run build:cjs",
-		"build:cjs": "tsc --module commonjs",
-		"build:esm": "tsc --module esnext && cpy dist/index.js dist --rename index.esm.js",
-		"dev": "ts-node example/index.ts",
-		"dev:js": "node --trace-warnings example/index.js",
-		"test:dev": "xo && pnpm run test",
-		"test": "jest --verbose"
-	},
-	"xo": {
-		"extensions": [
-			"ts"
-		],
-		"ignores": [
-			"__tests__/**/*.ts"
-		],
-		"rules": {
-			"import/no-anonymous-default-export": 0,
-			"quote-props": 0
-		}
-	},
-	"jest": {
-		"preset": "ts-jest"
+		"build": "del dist && tsc",
+		"test": "xo && ava",
+		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
 		"cheerio": "^1.0.0-rc.3",
 		"node-fetch": "^2.6.1"
 	},
 	"devDependencies": {
+		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/cheerio": "^0.22.21",
-		"@types/jsdom": "^16.2.4",
-		"@types/node": "^14.6.4",
 		"@types/node-fetch": "^2.5.7",
-		"cpy-cli": "^3.1.1",
-		"jest": "^26.4.2",
-		"rimraf": "^3.0.2",
-		"ts-jest": "^26.3.0",
+		"@typescript-eslint/eslint-plugin": "^4.4.1",
+		"@typescript-eslint/parser": "^4.4.1",
+		"ava": "^3.13.0",
+		"del-cli": "^3.0.1",
+		"eslint-config-xo-typescript": "^0.33.0",
 		"ts-node": "^9.0.0",
-		"typescript": "^4.0.2",
+		"typescript": "^4.0.3",
 		"xo": "^0.33.1"
+	},
+	"xo": {
+		"extends": "xo-typescript",
+		"ignores": [
+			"example/**/*"
+		]
+	},
+	"ava": {
+		"extensions": [
+			"ts"
+		],
+		"require": [
+			"ts-node/register"
+		]
 	},
 	"engines": {
 		"node": ">=12"
