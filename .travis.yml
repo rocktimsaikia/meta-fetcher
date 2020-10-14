@@ -3,3 +3,16 @@ node_js:
   - "node"
   - "12"
   - "10"
+git:
+  depth: 3
+before_install:
+  - rm -rf node_modules
+  - npm install --global npm
+  - npm uninstall --global pnpm
+  - npm cache clean --force
+install:
+  - npm install
+  - npm uninstall --global pnpm
+  - npm uninstall pnpm
+script:
+  - npm run test
