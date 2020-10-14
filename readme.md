@@ -1,6 +1,6 @@
 # meta-fetcher :mag_right:
 
-> Tiny URL meta-data fetcher that scraps the meta-data of a given `URL` string. 
+> Tiny URL meta-data fetcher that scraps the meta-data of a given `URL` string.
 
 ![Travis (.com) branch](https://img.shields.io/travis/com/rocktimsaikia/meta-fetcher/master)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
@@ -15,12 +15,12 @@ npm install meta-fetcher
 
 ## Basic Usage
 ```js
-const {fetchMetaData} = require('meta-fetcher');
+const fetchMetaData = require('meta-fetcher');
 
 (async () => {
 	const result = await fetchMetaData('https://hoppscotch.io/');
     	console.log(result);
-    
+
     /*
         {
         basic_metadata: {
@@ -47,7 +47,7 @@ const {fetchMetaData} = require('meta-fetcher');
             'https://hoppscotch.io/_nuxt/icons/icon_64x64.9834b3.png'
         ]
         }
-    */ 
+    */
 })();
 
 ```
