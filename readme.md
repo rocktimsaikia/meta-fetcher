@@ -56,7 +56,7 @@ const fetchMetaData = require('meta-fetcher');
 You can optionally set the `userAgent` and `fromEmail` options in request `Header` while fetching the meta-data.
 
 ```js
-const {fetchMetaData} = require('meta-fetcher');
+const fetchMetaData = require('meta-fetcher');
 
 (async () => {
 	const result = await fetchMetaData('https://hoppscotch.io/', {
@@ -70,7 +70,7 @@ const {fetchMetaData} = require('meta-fetcher');
 
 It can also fetch meta-data from `shortened-url` .For example:
 ```js
-const {fetchMetaData} = require('meta-fetcher');
+const fetchMetaData = require('meta-fetcher');
 
 (async () => {
 	const result = await fetchMetaData('https://bit.ly/2Fj9sNF');
