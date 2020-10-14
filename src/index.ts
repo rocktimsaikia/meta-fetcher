@@ -9,7 +9,7 @@ type Metadata = Record<string | number | symbol, unknown>;
  *  Fetches meta data of a given website url
  * @param url | the website url to fetch the metadata from
  */
-export const fetchMetaData = async (url: string, _options?: Options): Promise<Metadata | undefined> => {
+const fetchMetaData = async (url: string, _options?: Options): Promise<Metadata | undefined> => {
 	try {
 		const urlString: string = url.trim();
 
@@ -123,3 +123,9 @@ interface Options{
 	userAgent?: string;
 	fromEmail?: string;
 }
+
+export default fetchMetaData;
+
+// For CommonJS default export support
+module.exports = fetchMetaData;
+module.exports.default = fetchMetaData;

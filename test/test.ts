@@ -1,5 +1,5 @@
 import test from 'ava';
-import {fetchMetaData} from '../src';
+import fetchMetaData from '../src';
 
 test('check meta-data', async t => {
 	const response = await fetchMetaData('https://google.com');

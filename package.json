@@ -30,14 +30,9 @@
 		"scrapper"
 	],
 	"scripts": {
-		"prepublishOnly": "yarn prebuild && yarn test && yarn build",
-		"prebuild": "rimraf dist",
-		"build": "yarn build:esm && yarn build:cjs",
-		"build:cjs": "tsc --module commonjs",
-		"build:esm": "tsc --module esnext && cpy dist/index.js dist --rename index.esm.js",
-		"dev": "ts-node example/index.ts",
-		"dev:js": "node --trace-warnings example/index.js",
-		"test": "xo && ava"
+		"build": "del dist && tsc",
+		"test": "xo && ava",
+		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
 		"cheerio": "^1.0.0-rc.3",
@@ -46,15 +41,14 @@
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/cheerio": "^0.22.21",
-		"@types/jsdom": "^16.2.4",
 		"@types/node": "^14.6.4",
 		"@types/node-fetch": "^2.5.7",
 		"@typescript-eslint/eslint-plugin": "^4.4.1",
 		"@typescript-eslint/parser": "^4.4.1",
 		"ava": "^3.13.0",
 		"cpy-cli": "^3.1.1",
+		"del-cli": "^3.0.1",
 		"eslint-config-xo-typescript": "^0.33.0",
-		"rimraf": "^3.0.2",
 		"ts-node": "^9.0.0",
 		"typescript": "^4.0.3",
 		"xo": "^0.33.1"
