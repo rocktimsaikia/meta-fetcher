@@ -9,6 +9,10 @@ export const createValidUri = (host: string, path: string): string => {
 		return path;
 	}
 
+	if (path.startsWith('http') || path.startsWith('https')) {
+		return path;
+	}
+
 	const updatedPath = path.replace('/', '');
 	return `${host}${updatedPath}`;
 };
