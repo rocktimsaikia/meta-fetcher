@@ -9,7 +9,7 @@
 	"author": {
 		"name": "Rocktim Saikia",
 		"email": "rocktimthedev@gmail.com",
-		"url": "https://rocktim.xyz"
+		"url": "https://rocktimsaikia.now.sh"
 	},
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",

@@ -14,14 +14,15 @@ npm install meta-fetcher
 ```
 
 ## Basic Usage
+
 ```js
-const fetchMetaData = require('meta-fetcher');
+const fetchMetaData = require("meta-fetcher");
 
 (async () => {
-	const result = await fetchMetaData('https://hoppscotch.io/');
-    	console.log(result);
+	const result = await fetchMetaData("https://hoppscotch.io/");
+	console.log(result);
 
-    /*
+	/*
         {
         basic_metadata: {
             website: 'https://hoppscotch.io/',
@@ -49,60 +50,56 @@ const fetchMetaData = require('meta-fetcher');
         }
     */
 })();
-
 ```
 
 ## Advanced Usage (with options)
+
 You can optionally set the `userAgent` and `fromEmail` options in request `Header` while fetching the meta-data.
 
 ```js
-const fetchMetaData = require('meta-fetcher');
+const fetchMetaData = require("meta-fetcher");
 
 (async () => {
-	const result = await fetchMetaData('https://hoppscotch.io/', {
-		userAgent: 'Rocktim',
-		fromEmail: 'srocktim61@gmail.com'
+	const result = await fetchMetaData("https://hoppscotch.io/", {
+		userAgent: "Rocktim",
+		fromEmail: "srocktim61@gmail.com",
 	});
 	console.log(result);
 })();
 ```
+
 <br>
 
 It can also fetch meta-data from `shortened-url` .For example:
+
 ```js
-const fetchMetaData = require('meta-fetcher');
+const fetchMetaData = require("meta-fetcher");
 
 (async () => {
-	const result = await fetchMetaData('https://bit.ly/2Fj9sNF');
+	const result = await fetchMetaData("https://bit.ly/2Fj9sNF");
 	console.log(result);
 })();
 ```
 
 ## Options
+
 You can set these options in Header while fetching the data if needed.
 
-| Option         |  Required    | Default Value     |
-| :------------- | :----------: | -----------: |
-|  `userAgent`   | No   		| `meta-fetcher`    |
-| `fromEMail`    | No 			| `metafetch@email.com`    |
+| Option      | Required |         Default Value |
+| :---------- | :------: | --------------------: |
+| `userAgent` |    No    |        `meta-fetcher` |
+| `fromEMail` |    No    | `metafetch@email.com` |
 
-## API
+## Support
 
-**metaDataFetch(url, options)**
+You can support me and my work right here :
 
-#### url
-Type: `string`
-url string that you want to fetch the meta-data from.
-
-#### options
-Type: `object`
-Optional `Header` paramerter you can set if needed.
-
-## Contribute
-For any new feature request or bug report, please open an issue or pull request in GitHub.
+<a href="https://www.buymeacoffee.com/7BdaxfI"><img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg" height="40px"/></a>
 
 ## Related
+
 - [page-scrapper](https://github.com/rocktimsaikia/page-scrapper) - A simple node.js scrapper that pulls out all the links and images of a given site.
 
 ## License
-MIT &copy; [Rocktim Saikia](https://rocktim.xyz)
+
+MIT &copy; [Rocktim Saikia](https://rocktimsaikia.now.sh)
