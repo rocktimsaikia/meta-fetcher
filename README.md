@@ -1,7 +1,7 @@
 # meta-fetcher
 
-[![Build Status](https://github.com/rocktimsaikia/meta-fetcher/workflows/CI/badge.svg?branch=main)](https://github.com/rocktimsaikia/meta-fetcher/actions?query=branch%3Amain+workflow%3ACI)
-[![NPM Version](https://badge.fury.io/js/meta-fetcher.svg)](https://www.npmjs.com/package/meta-fetcher)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/rocktimsaikia/meta-fetcher/CI/main?style=flat-square&logo=github&color=success)
+![npm](https://img.shields.io/npm/v/meta-fetcher?style=flat-square&color=success&logo=npm)
 
 Simple metadata scrapper for node.js. Under the hood it uses [isomorphic-unfetch](https://www.npmjs.com/package/isomorphic-unfetch) \
 to fetch the metadata, parses it and returns it as json object.
