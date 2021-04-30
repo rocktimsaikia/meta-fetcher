@@ -1,0 +1,51 @@
+{
+  "name": "meta-fetcher",
+  "version": "0.1.0",
+  "description": "simple metadata scrapper for node.js",
+  "license": "MIT",
+  "repository": "rocktimsaikia/meta-fetcher",
+  "funding": "https://www.buymeacoffee.com/rocktimcodes",
+  "author": {
+    "name": "Rocktim Saikia",
+    "email": "rocktimthedev@gmail.com",
+    "url": "https://rocktimcodes.site"
+  },
+  "main": "dist/index.js",
+  "module": "dist/meta-fetcher.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "postversion": "git push && git push --tags"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.6",
+    "isomorphic-unfetch": "^3.1.0"
+  },
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "tsdx": "^0.14.1",
+    "typescript": "^4.2.4"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}

@@ -1,0 +1,28 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    name: lint, and test with Node ${{ matrix.node }} on ubuntu-latest
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['10.x', '12.x', '14.x']
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Test
+        run: yarn test --ci --coverage --maxWorkers=2
