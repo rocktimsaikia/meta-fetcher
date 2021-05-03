@@ -53,6 +53,10 @@
       "pre-commit": "npm run lint"
     }
   },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.6",
     "isomorphic-unfetch": "^3.1.0"
