@@ -33,25 +33,25 @@ const metaFetcher = async (url: string): Promise<Metadata | undefined> => {
 
   // Open graph basic
   const fetchMeta = () => {
-    const openGraphsArray = head.find('meta[property]');
-    const openGraphs: Record<string, string | undefined> = {};
-    openGraphsArray.each((_, element) => {
+    const opengraphArray = head.find('meta[property]');
+    const opengraph: Record<string, string | undefined> = {};
+    opengraphArray.each((_, element) => {
       const property = $(element).attr('property');
       const content = $(element).attr('content');
       if (property?.includes('twitter')) {
-        openGraphs[property] = content;
+        opengraph[property] = content;
       }
     });
 
-    return openGraphs;
+    return opengraph;
   };
 
   // Open graph social
   const fetchMetaSocial = () => {
-    const openGraphsArray = head.find('meta[name]');
+    const opengraphArray = head.find('meta[name]');
     const socials: Record<string, string | undefined> = {};
 
-    openGraphsArray.each((_, element) => {
+    opengraphArray.each((_, element) => {
       const property = $(element).attr('name');
       const content = $(element).attr('content');
 
@@ -84,15 +84,15 @@ const metaFetcher = async (url: string): Promise<Metadata | undefined> => {
   };
 
   // Meta-data
-  const basicMetaData = basicMeta();
-  const openGraphs = fetchMeta();
-  const openGraph_social = fetchMetaSocial();
+  const basic_metadata = basicMeta();
+  const opengraph = fetchMeta();
+  const opengraph_social = fetchMetaSocial();
   const favicons = fetchFavicons();
 
   const metaData = {
-    basic_metadata: basicMetaData,
-    opengraph: openGraphs,
-    opengraph_social: openGraph_social,
+    basic_metadata,
+    opengraph,
+    opengraph_social,
     favicons,
   };
 
