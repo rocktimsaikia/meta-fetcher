@@ -2,9 +2,19 @@
   "name": "meta-fetcher",
   "version": "3.0.0",
   "description": "simple metadata scrapper for node.js",
-  "license": "MIT",
+  "keywords": [
+    "meta-fetcher",
+    "url-metadata",
+    "url-metadata-scrapper",
+    "metadata-scrapper",
+    "website-metadata",
+    "website-metadata-scrapper",
+    "metadata",
+    "scrapper"
+  ],
   "repository": "rocktimsaikia/meta-fetcher",
   "funding": "https://www.buymeacoffee.com/rocktimcodes",
+  "license": "MIT",
   "author": {
     "name": "Rocktim Saikia",
     "email": "rocktimthedev@gmail.com",
@@ -14,7 +24,8 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "prebuild": "rm -rf dist",
@@ -23,6 +34,25 @@
     "test": "jest",
     "postversion": "git push && git push --tags",
     "prepublishOnly": "npm run lint && yarn test && yarn build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.6",
+    "isomorphic-unfetch": "^3.1.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
@@ -41,24 +71,5 @@
     "ts-jest": "^26.5.5",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node"
-  },
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.6",
-    "isomorphic-unfetch": "^3.1.0"
   }
 }
