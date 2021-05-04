@@ -22,44 +22,32 @@ const metaFetcher = async (url: string): Promise<Metadata | undefined> => {
   const basicMeta = () => {
     const website = response.url;
     const title = head.find('title').text();
-    const desc = head.find('meta[name=description]').attr('content');
+    const description = head.find('meta[name=description]').attr('content');
+    const banner = head.find('meta[name="og:image"]').attr('content');
+    const themeColor = head.find('meta[name="theme-color"]').attr('content');
 
     return {
       website,
       title,
-      description: desc,
+      description,
+      banner,
+      themeColor,
     };
   };
 
-  // Open graph basic
-  const fetchMeta = () => {
+  // Socials
+  const fetchSocials = () => {
     const opengraphArray = head.find('meta[property]');
     const opengraph: Record<string, string | undefined> = {};
     opengraphArray.each((_, element) => {
       const property = $(element).attr('property');
       const content = $(element).attr('content');
-      if (property?.includes('twitter')) {
+      if (property?.includes('twitter') && !property?.includes('card')) {
         opengraph[property] = content;
       }
     });
 
     return opengraph;
-  };
-
-  // Open graph social
-  const fetchMetaSocial = () => {
-    const opengraphArray = head.find('meta[name]');
-    const socials: Record<string, string | undefined> = {};
-
-    opengraphArray.each((_, element) => {
-      const property = $(element).attr('name');
-      const content = $(element).attr('content');
-
-      if (property?.includes('twitter')) {
-        socials[property] = content;
-      }
-    });
-    return socials;
   };
 
   // Favicons
@@ -84,15 +72,13 @@ const metaFetcher = async (url: string): Promise<Metadata | undefined> => {
   };
 
   // Meta-data
-  const basic_metadata = basicMeta();
-  const opengraph = fetchMeta();
-  const opengraph_social = fetchMetaSocial();
+  const metadata = basicMeta();
+  const socials = fetchSocials();
   const favicons = fetchFavicons();
 
   const metaData = {
-    basic_metadata,
-    opengraph,
-    opengraph_social,
+    metadata,
+    socials,
     favicons,
   };
 

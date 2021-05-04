@@ -33,18 +33,14 @@ import metaFetcher from 'meta-fetcher';
 
   /*
         {
-            basic_metadata: {
+            metadata: {
                 website: 'https://hoppscotch.io/',
                 title: 'Hoppscotch - Open source API development ecosystem',
-                description: 'Helps you create requests faster, saving precious time on development.'
+                description: 'Helps you create requests faster, saving precious time on development.',
+                banner: 'https://hoppscotch.io/banner.jpg',
+                themeColor: '#202124'
             },
-            opengraph: {
-                'twitter:card': 'summary_large_image',
-                'twitter:site': '@hoppscotch_io',
-                'twitter:creator': '@hoppscotch_io'
-            },
-            opengraph_social: {
-                'twitter:card': 'summary_large_image',
+            socials: {
                 'twitter:site': '@hoppscotch_io',
                 'twitter:creator': '@hoppscotch_io'
             },
