@@ -2,13 +2,23 @@ import fetch from 'isomorphic-unfetch';
 import * as cheerio from 'cheerio';
 import formatUri from './format';
 
-type Metadata = Record<string, string[] | Record<string, string | undefined>>;
+type Metadata = {
+  metadata: {
+    website: string;
+    title: string;
+    description: string | undefined;
+    banner: string | undefined;
+    themeColor: string | undefined;
+  };
+  socials: Record<string, string | undefined>;
+  favicons: string[];
+};
 
 /**
  *  Fetches meta data of a given website url
  * @param url | the website url to fetch the metadata from
  */
-const metaFetcher = async (url: string): Promise<Metadata | undefined> => {
+const metaFetcher = async (url: string): Promise<Metadata> => {
   const urlString: string = url.trim();
 
   const response = await fetch(urlString);
@@ -20,10 +30,12 @@ const metaFetcher = async (url: string): Promise<Metadata | undefined> => {
 
   // Basic site meta-data
   const basicMeta = () => {
-    const website = response.url;
+    const website: string = response.url;
     const title = head.find('title').text();
     const description = head.find('meta[name=description]').attr('content');
-    const banner = head.find('meta[name="og:image"]').attr('content');
+    const banner =
+      head.find('meta[name="og:image"]').attr('content') ||
+      head.find('meta[property="og:image"]').attr('content');
     const themeColor = head.find('meta[name="theme-color"]').attr('content');
 
     return {
