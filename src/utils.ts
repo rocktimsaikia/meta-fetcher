@@ -1,5 +1,5 @@
 const isValid = (path: string): boolean =>
-  path.startsWith('http') || path.startsWith('https');
+	path.startsWith('http') || path.startsWith('https');
 
 /**
  * Prefix the site host to the relative favicon paths
@@ -7,10 +7,10 @@ const isValid = (path: string): boolean =>
  * @param path | favicon relative path
  */
 const createValidUri = (host: string, path: string): string => {
-  if (isValid(path)) return path;
+	if (isValid(path)) return path;
 
-  const updatedPath = path.replace('/', '');
-  return `${host}${updatedPath}`;
+	const updatedPath = path.replace('/', '');
+	return `${host}${updatedPath}`;
 };
 
 export default createValidUri;

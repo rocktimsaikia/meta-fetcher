@@ -1,28 +1,36 @@
 name: CI
-on: [push]
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
 jobs:
   build:
-    name: lint, and test with Node ${{ matrix.node }} on ubuntu-latest
-
     runs-on: ubuntu-latest
+    environment: actions
+
     strategy:
       matrix:
-        node: ['10.x', '12.x', '14.x']
+        node-version: [16.x, 18.x, 19.x, 20.x]
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      - name: Install Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ matrix.node-version }}
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-      - name: Lint
-        run: yarn lint
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
+      - name: Run the tests
+        run: pnpm test
