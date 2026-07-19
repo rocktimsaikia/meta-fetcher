@@ -1,5 +1,4 @@
 import * as cheerio from 'cheerio';
-import fetch from 'node-fetch';
 import formatUri from './utils';
 
 interface Metadata {
@@ -14,6 +13,40 @@ interface Metadata {
 	favicons: string[];
 }
 
+// Hard cap for pages that never yield a </head> or <body> marker
+const MAX_BYTES = 1024 * 1024;
+
+/*
+  Streams the response body only until the document head has been received,
+  then cancels the request. All the metadata we parse lives in <head>, so
+  there is no need to download the full page.
+*/
+async function fetchHead(url: string): Promise<{ html: string; finalUrl: string }> {
+	const response = await fetch(url);
+	const finalUrl = response.url;
+
+	if (!response.body) {
+		return { html: await response.text(), finalUrl };
+	}
+
+	const reader = response.body.getReader();
+	const decoder = new TextDecoder();
+	let html = '';
+	let bytes = 0;
+
+	while (bytes < MAX_BYTES) {
+		const { done, value } = await reader.read();
+		if (done) return { html, finalUrl };
+		bytes += value.byteLength;
+		html += decoder.decode(value, { stream: true });
+		// </head> is optional in valid HTML, so <body is the fallback marker
+		if (/<\/head|<body/i.test(html)) break;
+	}
+
+	await reader.cancel().catch(() => {});
+	return { html, finalUrl };
+}
+
 /*
   Fetches meta data of a given website url
   @param url | the website url to fetch the metadata from
@@ -21,16 +54,15 @@ interface Metadata {
 export default async function metaFetcher(url: string): Promise<Metadata> {
 	const urlString: string = url.trim();
 
-	const response = await fetch(urlString);
-	const content = await response.text();
+	const { html, finalUrl } = await fetchHead(urlString);
 
 	// Load html to cheerio
-	const $ = cheerio.load(content);
+	const $ = cheerio.load(html);
 	const head = $('head');
 
 	// Basic site meta-data
 	const basicMeta = () => {
-		const website: string = response.url;
+		const website: string = finalUrl;
 		const title = head.find('title').text();
 		const description = head.find('meta[name=description]').attr('content');
 		const banner =
@@ -75,7 +107,7 @@ export default async function metaFetcher(url: string): Promise<Metadata> {
 				href &&
 				(rel?.includes('icon') || rel?.includes('apple-touch-startup-image'))
 			) {
-				const validUri = formatUri(response.url, href);
+				const validUri = formatUri(finalUrl, href);
 				favicons.push(validUri);
 			}
 		});

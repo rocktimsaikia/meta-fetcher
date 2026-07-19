@@ -22,15 +22,24 @@ let server;
 let baseUrl;
 
 test.before(async () => {
-	server = http.createServer((_, res) => {
+	server = http.createServer((req, res) => {
 		res.setHeader('content-type', 'text/html');
+		if (req.url === '/endless') {
+			// Send the head, then keep the connection open without ever ending
+			// the body. metaFetcher must resolve anyway.
+			res.write(html.replace('</html>', '<body>'));
+			return;
+		}
 		res.end(html);
 	});
 	await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 	baseUrl = `http://127.0.0.1:${server.address().port}/`;
 });
 
-test.after.always(() => server.close());
+test.after.always(() => {
+	server.closeAllConnections();
+	server.close();
+});
 
 test('it should contain the meta-data properties', async (t) => {
 	const response = await metaFetcher(baseUrl);
@@ -44,4 +53,9 @@ test('it should contain the meta-data properties', async (t) => {
 		`${baseUrl}favicon.ico`,
 		`${baseUrl}apple-touch-icon.png`,
 	]);
+});
+
+test('it should resolve without downloading the full body', async (t) => {
+	const response = await metaFetcher(`${baseUrl}endless`);
+	t.is(response.metadata.title, 'Test Site');
 });
