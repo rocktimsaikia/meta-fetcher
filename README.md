@@ -53,4 +53,4 @@ The url string to be scrapped.
 
 ## License
 
-2025 [MIT](./LICENSE) © [Rocktim Saikia](https://rocktimsaikia.dev)
+2026 [MIT](./LICENSE) © [Rocktim Saikia](https://rocktimsaikia.dev)
