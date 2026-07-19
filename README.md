@@ -3,7 +3,7 @@
 [![CI](https://github.com/rocktimsaikia/meta-fetcher/actions/workflows/main.yml/badge.svg)](https://github.com/rocktimsaikia/meta-fetcher/actions/workflows/main.yml)
 ![npm](https://img.shields.io/npm/v/meta-fetcher?style=flat&color=success&logo=npm)
 
-Simple metadata scrapper.
+Simple metadata scraper.
 
 ## Installation
 
@@ -25,12 +25,18 @@ Output:
 
 ```json
 {
-  "title": "Hoppscotch - Open source API development ecosystem",
-  "description": "Helps you create requests faster, saving precious time on development.",
-  "image": "https://hoppscotch.io/og.png",
-  "url": "https://hoppscotch.io/",
-  "siteName": "Hoppscotch",
-  "type": "website"
+  "metadata": {
+    "website": "https://hoppscotch.io/",
+    "title": "Hoppscotch • Open source API development ecosystem",
+    "description": "Helps you create requests faster, saving precious time on development.",
+    "banner": "https://hoppscotch.io/banner.png",
+    "themeColor": "#181818"
+  },
+  "socials": {},
+  "favicons": [
+    "https://hoppscotch.io/favicon.ico",
+    "https://hoppscotch.io/icon.png"
+  ]
 }
 ```
 
@@ -38,14 +44,13 @@ Output:
 
 ### metaFetcher(input)
 
-Takes one url string as a parameter and returns an object containing the meta-information.
+Takes a url string and returns an object with `metadata` (website, title, description, banner, themeColor), `socials` (twitter meta tags), and `favicons` (resolved icon urls).
 
 #### input
 
-type: `string` \
-default: `'none'`
+type: `string`
 
-The url string to be scrapped.
+The url to scrape.
 
 ## Related
 
