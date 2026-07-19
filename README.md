@@ -58,4 +58,4 @@ The url to scrape.
 
 ## License
 
-2026 [MIT](./LICENSE) © [Rocktim Saikia](https://rocktimsaikia.dev)
+2026 [MIT](./LICENSE) © [Rocktim Saikia](https://rocktim.dev)

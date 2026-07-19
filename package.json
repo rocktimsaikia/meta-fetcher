@@ -1,7 +1,7 @@
 {
-	"name": "my-npm-package",
-	"description": "Get country information via currency code",
-	"version": "0.0.0",
+	"name": "meta-fetcher",
+	"description": "Simple metadata scraper",
+	"version": "3.1.1",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"type": "module",
@@ -12,10 +12,10 @@
 	"author": {
 		"email": "rocktimthedev@gmail.com",
 		"name": "Rocktim Saikia",
-		"url": "https://rocktimsaikia.dev"
+		"url": "https://rocktim.dev"
 	},
 	"funding": "https://github.com/sponsors/rocktimsaikia",
-	"repository": "rocktimsaikia/my-npm-package",
+	"repository": "rocktimsaikia/meta-fetcher",
 	"scripts": {
 		"build": "tsup",
 		"test": "pnpm build && ava",
@@ -39,7 +39,11 @@
 		"contents": "dist"
 	},
 	"keywords": [
-		"my-npm-package"
+		"metadata",
+		"scraper",
+		"opengraph",
+		"favicon",
+		"meta-tags"
 	],
 	"prettier": "@rocktimsaikia/prettier-config",
 	"tsup": {
