@@ -8,7 +8,7 @@ Simple metadata scraper for Node.js.
 ## Installation
 
 ```sh
-yarn add meta-fetcher
+npm install meta-fetcher
 ```
 
 ## Usage
