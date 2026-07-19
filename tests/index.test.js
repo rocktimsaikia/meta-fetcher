@@ -12,6 +12,8 @@ const html = `<!doctype html>
 	<meta property="twitter:site" content="@testsite" />
 	<meta property="twitter:card" content="summary" />
 	<link rel="icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link rel="preload" href="/assets/codicon.ttf" />
 </head>
 <body></body>
 </html>`;
@@ -38,5 +40,8 @@ test('it should contain the meta-data properties', async (t) => {
 	t.is(response.metadata.banner, 'https://example.com/og.png');
 	t.is(response.metadata.themeColor, '#ff0000');
 	t.deepEqual(response.socials, { 'twitter:site': '@testsite' });
-	t.deepEqual(response.favicons, [`${baseUrl}favicon.ico`]);
+	t.deepEqual(response.favicons, [
+		`${baseUrl}favicon.ico`,
+		`${baseUrl}apple-touch-icon.png`,
+	]);
 });

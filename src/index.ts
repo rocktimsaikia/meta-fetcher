@@ -69,12 +69,11 @@ export default async function metaFetcher(url: string): Promise<Metadata> {
 
 		faviconArray.each((_, element) => {
 			const href = $(element).attr('href');
+			const rel = $(element).attr('rel');
 
 			if (
-				href?.includes('shortcut icon') ||
-				href?.includes('icon') ||
-				href?.includes('apple-touch-startup-image') ||
-				href?.includes('apple-touch-icon')
+				href &&
+				(rel?.includes('icon') || rel?.includes('apple-touch-startup-image'))
 			) {
 				const validUri = formatUri(response.url, href);
 				favicons.push(validUri);
