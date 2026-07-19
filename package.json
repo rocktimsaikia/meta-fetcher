@@ -1,6 +1,6 @@
 {
 	"name": "meta-fetcher",
-	"description": "Simple metadata scraper",
+	"description": "Simple metadata scraper for Node.js",
 	"version": "3.1.1",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
