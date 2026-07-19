@@ -1,7 +1,7 @@
 # meta-fetcher
 
 [![CI](https://github.com/rocktimsaikia/meta-fetcher/actions/workflows/main.yml/badge.svg)](https://github.com/rocktimsaikia/meta-fetcher/actions/workflows/main.yml)
-![npm](https://img.shields.io/npm/v/meta-fetcher?style=flat&color=success&logo=npm)
+![npm](https://badgen.net/npm/v/meta-fetcher)
 
 Simple metadata scraper for Node.js.
 
