@@ -12,6 +12,7 @@ const html = `<!doctype html>
 	<meta property="twitter:site" content="@testsite" />
 	<meta property="twitter:card" content="summary" />
 	<link rel="icon" href="/favicon.ico" />
+	<link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 	<link rel="preload" href="/assets/codicon.ttf" />
 </head>

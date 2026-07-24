@@ -111,7 +111,7 @@ export default async function metaFetcher(url: string): Promise<Metadata> {
 				favicons.push(validUri);
 			}
 		});
-		return favicons;
+		return [...new Set(favicons)];
 	};
 
 	// Meta-data
