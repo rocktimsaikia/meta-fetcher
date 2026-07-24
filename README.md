@@ -5,6 +5,14 @@
 
 Scrape metadata from a website URL
 
+## Features
+
+- Never fetches the full page - stops downloading as soon as `<head>` is received
+- Uses native `fetch`; cheerio is the only dependency
+- Follows redirects and reports the final url
+- Resolves relative favicon paths to absolute urls
+- Ships TypeScript types, works with both ESM and CJS
+
 ## Installation
 
 Requires Node.js 18 or later. Ships with TypeScript types.
