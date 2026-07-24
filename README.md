@@ -28,7 +28,7 @@ Pass the url string to scrape. Resolves with an object containing `metadata` (we
 ```js
 import metaFetcher from 'meta-fetcher';
 
-const result = await metaFetcher('https://hoppscotch.io/');
+const result = await metaFetcher('https://rocktim.dev');
 
 console.log(result);
 ```
@@ -38,16 +38,18 @@ Output:
 ```json
 {
   "metadata": {
-    "website": "https://hoppscotch.io/",
-    "title": "Hoppscotch • Open source API development ecosystem",
-    "description": "Helps you create requests faster, saving precious time on development.",
-    "banner": "https://hoppscotch.io/banner.png",
-    "themeColor": "#181818"
+    "website": "https://rocktim.dev/",
+    "title": "Rocktim Saikia",
+    "description": "Rocktim Saikia - Senior Full-Stack Engineer. Indie builder of APIs, CLIs and dev tools.",
+    "banner": "https://rocktim.dev/og.png",
+    "themeColor": "#fdfdf8"
   },
-  "socials": {},
+  "socials": {
+    "twitter:site": "@rocktimsaikia",
+    "twitter:creator": "@rocktimsaikia"
+  },
   "favicons": [
-    "https://hoppscotch.io/favicon.ico",
-    "https://hoppscotch.io/icon.png"
+    "https://rocktim.dev/apple-touch-icon.png"
   ]
 }
 ```
